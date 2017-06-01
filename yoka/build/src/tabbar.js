@@ -2030,7 +2030,7 @@
 
 	var BASE_URL = {
 	    //https://github.com/fengmnegchang/yokaweex
-	    IP: 'github.com/fengmnegchang/yokaweex',
+	    IP: 'github.com/fengmnegchang/yokaweex/tree/master/',
 	    HTTP: 'https://',
 
 	};
