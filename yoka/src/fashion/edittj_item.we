@@ -1,5 +1,5 @@
 <template>
-    <div  class="itemClass itemClass_{{platform}}-{{skinType}}">
+    <div  class="itemClass itemClass_{{platform}}-{{skinType}}" onclick="towebdetail">
         <div class="news-bottom" >
             <image class="img" src="{{stockitem.picture}}"></image>
             <text class="tucao_numClass textClass-{{skinType}}">{{stockitem.title}}</text>
@@ -11,7 +11,7 @@
 <script>
     require('weex-components');
     var yoka = require('../yoka');
-
+    var weexEventModule = require('@weex-module/weexEventModule');
 
     module.exports = {
         created: function () {
@@ -29,7 +29,9 @@
             skinType: 0
         },
         methods: {
-
+            towebdetail:function (e) {
+                weexEventModule.startYokaWebViewActivity(this.stockitem.link);
+            },
         }
     }
 </script>
