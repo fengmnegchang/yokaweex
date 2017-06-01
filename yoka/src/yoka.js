@@ -4,6 +4,17 @@ var BASE_URL = {
 
 };
 
+var YOKA = {
+    edittj:"http://brandservice.yoka.com/v1/?_c=cmsbrandindex&_a=getCmsForZhuNew&_moduleId=29&channel=23&column=103&skip=45&limit=15&p=",
+
+};
+
+exports.getedittj = function () {
+    var url = YOKA.edittj;
+    console.log('edittj==' + url);
+    return url;
+};
+
 exports.getDefaultUrl = function (name) {
     var url;
     url = getBaseUrl(name, true) + name + ".js";

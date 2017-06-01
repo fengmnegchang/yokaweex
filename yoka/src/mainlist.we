@@ -14,7 +14,7 @@
 
     // var navigator = require('@weex-module/weexNavigatorModule')
 
-    var taoguba = require('./taoguba');
+    var yoka = require('./yoka');
 
     var globalEventModule = require('@weex-module/globalEvent');
     export default {
@@ -70,7 +70,7 @@
 
 //                alert('event.value : ' + event.value)
                 navigator.push({
-                    url: taoguba.getDefaultUrl(name),
+                    url: yoka.getDefaultUrl(name),
                     animated: "true"
                 }, event => {
 

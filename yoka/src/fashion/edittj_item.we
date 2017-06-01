@@ -1,8 +1,8 @@
 <template>
-    <div  class="itemClass itemClass_{{platform}}-{{skinType}}" onclick="todetail">
+    <div  class="itemClass itemClass_{{platform}}-{{skinType}}">
         <div class="news-bottom" >
-            <image class="img" src="{{getImgUrl('././images/default_img.png')}}"></image>
-            <text class="tucao_numClass textClass-{{skinType}}">{{stockitem.tucaoNum}}</text>
+            <image class="img" src="{{stockitem.picture}}"></image>
+            <text class="tucao_numClass textClass-{{skinType}}">{{stockitem.title}}</text>
         </div>
         <div class="lineClass lineClass-{{skinType}}"></div>
     </div>
@@ -11,28 +11,25 @@
 <script>
     require('weex-components');
     var yoka = require('../yoka');
-    var navigator = require('@weex-module/navigator')
-    var weexNavigator = require('@weex-module/weexNavigatorModule')
-    var weexEventModule = require('@weex-module/weexEventModule');
-    var weexModalUIModule = require('@weex-module/weexModalUIModule');
+
+
     module.exports = {
         created: function () {
             this.platform = this.$getConfig().env.platform;
+            console.log(this.stockitem.picture);
         },
         data: {
             is_ios_text: 0,
             platform: '',
             stockitem: {
-
+                "link":"http://www.yoka.com/fashion/edittj/2017/0410/50473001074747.shtml",
+                "title":"这6个穿搭法则如果记住，时髦一整年没问题！",
+                "picture":"http://p7.yokacdn.com/pic/YOKA/2017-04-11/U15P1TS1491893036_67597.jpg"
             },
             skinType: 0
-
-
         },
         methods: {
-            getImgUrl: function (url) {
-                return yoka.getImageUrl(url);
-            },
+
         }
     }
 </script>
@@ -48,10 +45,7 @@
         background-color: #132237
     }
     .news-bottom {
-        margin-right: 15wx;
         flex: 1;
-        flex-direction: column;
-        justify-content: flex-end;
         align-items: center;
     }
 
@@ -82,8 +76,8 @@
     }
 
     .img {
-        width: 200wx;
-        height: 120wx;
+        width: 750;
+        height: 600;
     }
 
     .lineClass {
