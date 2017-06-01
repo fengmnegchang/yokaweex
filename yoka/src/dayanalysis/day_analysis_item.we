@@ -1,0 +1,212 @@
+<template>
+    <div onclick="openshuoshuo" ref="{{stockitem.topicID}}" class="itemClass itemClass_{{platform}}-{{skinType}}">
+        <div class="news-content">
+            <text class="subject_class subject_class-{{skinType}}"> {{stockitem.subject}}</text>
+        </div>
+        <div class="news-content content">
+            <!--<text class="maxline text_content_class-{{skinType}}"> {{stockitem.content}}</text>-->
+            <mystockview if={{!is_ios_text}} onclick="openshuoshuo" style="lines:3;">
+                {{stockitem.myrichvalue}}
+            </mystockview>
+            <myrichtext if={{is_ios_text}} class="myrichtext">{{stockitem.myrichvalue}}</myrichtext>
+        </div>
+        <div class="news-bottom">
+            <div class="news-date">
+                <text class="textClass textClass-{{skinType}}"> {{formatTime()}}</text>
+            </div>
+            <div class="news-username">
+                <text class="textClass textClass-{{skinType}}">{{stockitem.userName}}</text>
+            </div>
+        </div>
+        <div class="lineClass lineClass-{{skinType}}"></div>
+    </div>
+</template>
+
+<script>
+    require('weex-components');
+    var modal = require('@weex-module/modal');
+    var stream = require('@weex-module/stream');
+    var storage = require('@weex-module/storage');
+    var weexEventModule = require('@weex-module/weexEventModule');
+    var taoguba = require('../taoguba');
+    var navigator = require('@weex-module/navigator')
+    var date = require('../common/date');
+    module.exports = {
+        created: function () {
+            this.platform = this.$getConfig().env.platform;
+            this.platform = this.$getConfig().env.platform;
+            var cskinType = this.$getConfig().skinType;
+            ;
+            if (this.platform != 'iOS' && this.platform != 'android') {
+                cskinType = taoguba.getUrlParam('skinType');
+            }
+            if (cskinType == undefined) {
+                cskinType = 0;
+            }
+            this.skinType = cskinType;
+            if (this.platform == 'iOS') {
+                this.is_ios_text = 1;
+            }
+        },
+        data: {
+            is_ios_text:0,
+            stockitem: {
+                "subject": "乒乓球亚锦赛-马龙输球出局 丁宁无缘四强",
+                "content": "今天，2017年乒乓球亚锦赛在江苏无锡展开男子单打1/16决赛的争夺，马龙1比3不敌韩国选手郑尚恩，无缘16强，四局的比分为9-11/8-11/11-6/6-11。中国队剩余的四位男单都顺利晋级八强。张继科以3比0横扫日本的大岛祐哉晋级。许昕、樊振东和林高远也一同携手过关。...【开心一刻018】 ",
+                "topicID": 1504558,
+                "userID": 1724850,
+                "userName": "开心一刻018",
+                "postDateNum": 20170417,
+                "creator": null,
+                "creatorUserID": null,
+                "createdt": 1492419462000,
+                "countNum": 0,
+                "feedID": 0,
+                scontent: ''
+            },
+            platform: 'unknown',
+
+
+        },
+        methods: {
+            openshuoshuo: function (e) {
+//                var topicID = e.target.attr.ref;
+                //自定义控件
+                var topicID = this.stockitem.topicID;
+                var url = taoguba.getMTaoguba('topicID=' + topicID + '&replyID=0&pageNo=1');
+                var optionJson = {
+                    'TOPIC_ID_KEY': topicID,
+                    'TOPIC_REPLY_ID_KEY': 0,
+                };
+                var params = {
+                    'url': url,
+                    'animated': 'true',
+                    'options': {'skinType': '0'}
+                };
+                if (typeof window === 'object') {
+                    //http://m.taoguba.com.cn/mViewTopic?topicID=1293091&replyID=890&pageNo=1
+                    //https://m.taoguba.com.cn/Article/1657029/1
+
+                    navigator.push(params, e => {
+
+                    });
+
+
+                } else {
+//                     weexNavigator.push(params,event => {
+//                                                       //sunccess
+//                                                 } );
+                    var platform = this.$getConfig().env.platform;
+                    if (platform == 'iOS') {
+                        var event_ios = require('@weex-module/event')
+                        event_ios.pushViewController('TopicViewController', {'topicID': topicID, 'replyID': 0});
+                    }
+                    else {
+                        weexEventModule.startOtherNativeActivity('com.taoguba.app.activity.TaogubaTopicActivity', optionJson);
+                    }
+                }
+            },
+            formatTime: function () {
+                var time = this.stockitem.createdt;
+                var strTime = date.formatDate(new Date(time), "MM-dd hh:mm");
+                return strTime;
+            }
+
+        }
+    }
+</script>
+<style>
+    .myrichtext {
+
+    }
+    .itemClass{
+        padding-left: 8wx;
+        padding-right: 8wx;
+    }
+    .itemClass_android-0:active {
+        background-color: #dddddd
+    }
+
+    .itemClass_android-1:active {
+        background-color: #132237
+    }
+
+    .news-bottom {
+        margin-bottom: 5wx;
+        flex-direction: row;
+    }
+    .content{
+        padding-left: 5wx;
+        padding-right: 5wx;
+    }
+
+    .news-content, .news-bottom {
+        margin-left: 10wx;
+        margin-right: 10wx;
+        margin-top: 10wx;
+    }
+
+    .news-username {
+        /*justify-content: flex-end;*/
+        /*align-items: flex-end;*/
+        flex-direction: row;
+        margin-left: 5wx;
+    }
+
+    .news-date {
+
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: row;
+    }
+
+    .textClass {
+        font-size: 12wx;
+    }
+
+    .textClass-0 {
+        color: #BBBBBB;
+    }
+
+    .textClass-1 {
+        color: #666666;
+    }
+
+    .lineClass {
+        height: 2wx;
+        margin-top: 10wx;
+    }
+
+    .lineClass-0 {
+        background-color: #eeeeee;
+    }
+
+    .lineClass-1 {
+        background-color: #0e1929;
+    }
+
+    .maxline {
+        font-size: 18wx;
+    }
+
+    .text_content_class-0 {
+        color: #555555;
+    }
+
+    .text_content_class-1 {
+        color: #999999;
+    }
+
+    .subject_class {
+        font-size: 16wx;
+        font-weight: bold
+    }
+
+    .subject_class-0 {
+        color: #333333;
+    }
+
+    .subject_class-1 {
+        color: #999999;
+    }
+</style>

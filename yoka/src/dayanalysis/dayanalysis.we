@@ -1,0 +1,278 @@
+<template>
+    <div>
+        <list class="list">
+            <refresh class="refresh-view refresh-view-{{skinType}}" display="{{refresh_display}}" onrefresh="onrefresh"
+                     refreshing="{{refreshing}}">
+                <loading-indicator class="indicator"></loading-indicator>
+                <text class="refresh-arrow refresh-arrow-{{skinType}}">
+                    下拉刷新
+                </text>
+            </refresh>
+
+            <cell repeat="{{stockitem in stockArray}}">
+                <day_analysis_item stockitem="{{stockitem}}"></day_analysis_item>
+            </cell>
+            <loading class="loading-view loading-view-{{skinType}}" display="{{showLoading}}" onloading="onloading">
+                <text class="refresh-arrow refresh-arrow-{{skinType}}">
+                    加载更多
+                </text>
+                <loading-indicator class="indicator"></loading-indicator>
+            </loading>
+        </list>
+    </div>
+</template>
+
+<script>
+
+    require('weex-components');
+    require('../template/navbar.we')
+    require('./day_analysis_item.we')
+    var stream = require('@weex-module/stream');
+    var modal = require('@weex-module/modal');
+    var taoguba = require('../taoguba');
+    var weexEventModule = require('@weex-module/weexEventModule');
+    var weexModalUIModule = require('@weex-module/weexModalUIModule');
+    module.exports = {
+
+        data: {
+            refreshing: 'false',
+            refresh_display: 'hide',
+            stockArray: [],
+            test: 's-test',
+            pageNo: 1,
+            platform: 'unknown',
+            skinType: 0,
+            isFirst: 1,
+            showLoading: 'hide',
+            myRichTextColor: [
+                '#666666',
+                '#999999'
+            ],
+            tagTextColor: [
+                '#1191f6',
+                '#005e91'
+            ],
+        },
+
+        methods: {
+            autoRefresh: function () {
+                var self = this;
+                this.$call('timer', 'setTimeout', function () {
+                    self.refreshing = 'true';
+                }, 50);
+            },
+            onloading: function (e) {
+                console.log('onloading');
+                var self = this;
+                self.showLoading = 'show';
+                self.pageNo = self.pageNo + 1;
+                self.refresh();
+            },
+
+            onrefresh: function (e) {
+                console.log('onrefresh');
+                var self = this;
+                self.pageNo = 1;
+                self.refresh_display = 'show';
+                self.refresh();
+            },
+
+            refresh: function () {
+                console.log('refresh');
+                var self = this;
+                self.isFirst = 0;
+                var url = taoguba.apiGetAnalysisNews();
+                var body = {};
+
+                if (self.platform == 'iOS' || self.platform == 'android') {
+                    body.url = url;
+                    body.pageNo = self.pageNo;
+                }
+                stream.fetch({
+                        method: 'GET',
+                        url: url + 'pageNo=' + self.pageNo,
+                        body: body,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            token: taoguba.getToken(),
+                        }
+                    },
+                    function (ret) {
+                        self.refresh_display = 'hide';
+                        self.showLoading = 'hide';
+                        self.refreshing = "false";
+                        var result = JSON.stringify(ret);
+
+                        // console.log('dayanalysis.we==' + result);
+                        if (!ret.ok) {
+//                                    modal.toast({"message":"Network Error!",'duration':2}); 
+                        }
+                        else {
+                            if (self.pageNo == 1) {
+                                self.stockArray.splice(0, self.stockArray.length);
+                            }
+                            var json = ret.data;
+                            //是String类型才解析
+                            if (json && typeof(json) != 'object') {
+                                try {
+                                    json = eval('(' + ret.data + ')');
+                                } catch (e) {
+                                }
+                            }
+                            var resultStatus = '1';
+                            if (typeof window === 'object') {
+                                if (json && json.status == true) {
+                                    resultStatus = '1';
+                                } else {
+                                    resultStatus = '0';
+                                }
+                            }
+                            else if (self.platform == 'iOS') {
+                                resultStatus = '1';
+                            }
+                            else {
+                                resultStatus = weexEventModule.isStatus(json.errorCode, json.status);
+                            }
+                            //var str = JSON.stringify(json);
+                            //console.log('resultStatusAAA=='+resultStatus);
+                            if (resultStatus == '1') {
+                                if (json.dto.list && json.dto.list.length > 0) {
+                                    for (var i = 0; i < json.dto.list.length; i++) {
+                                        var stockitem = json.dto.list[i];
+                                        var myrichvaluejson = {
+                                            content: stockitem.content,
+                                            myrichvalue: [],
+                                            "gravity": "",
+                                            lines:3,
+                                            tagTextColor:self.tagTextColor[self.skinType],
+                                        };
+                                        var  myrich = {};
+                                        myrich.strText = stockitem.content;
+                                        myrich.strTextColor = self.myRichTextColor[self.skinType];
+                                        myrich.strTextSize = 14;
+                                        myrich.onClickType = 0;
+                                        myrichvaluejson.myrichvalue.push(myrich);
+                                        stockitem.myrichvalue = myrichvaluejson;
+                                        self.stockArray.push(stockitem);
+                                    }
+                                }
+                                else {
+                                    if (self.platform != 'web') {
+                                        weexModalUIModule.toast("木有新的数据");
+                                    }
+                                }
+
+                            } else {
+                                if (typeof window == 'object') {
+                                    console.log(json.errorMessage)
+                                } else {
+                                    weexModalUIModule.toast(json.errorMessage);
+                                }
+                            }
+
+                        }
+                    },
+                    function (res) {
+                    }
+                );
+
+            }
+
+        },
+        created: function () {
+            console.log('created');
+            var self = this;
+            this.platform = this.$getConfig().env.platform;
+            var cskinType = this.$getConfig().skinType;
+            ;
+            if (this.platform != 'iOS' && this.platform != 'android') {
+                cskinType = taoguba.getUrlParam('skinType');
+            }
+            if (cskinType == undefined) {
+                cskinType = 0;
+            }
+            this.skinType = cskinType;
+//                self.refresh();
+        }
+    }
+</script>
+
+<style>
+    .list {
+        width: 750;
+    }
+
+    .content_class-0 {
+        background-color: #f5f5f5;
+    }
+
+    .content_class-1 {
+        background-color: #15253d;
+    }
+
+    .loading-view {
+        width: 750;
+        height: 50wx;
+        display: -ms-flex;
+        display: -webkit-flex;
+        display: flex;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loading-view-1 {
+        background-color: #15253d;
+    }
+
+    .loading-view-0 {
+        background-color: #f5f5f5;
+    }
+
+    .refresh-arrow {
+        margin-top: 3wx;
+        height: 12wx;
+        width: 200wx;
+        font-size: 12wx;
+        text-align: center;
+        align-items: center;
+    }
+
+    .refresh-arrow-0 {
+        color: #BBBBBB;
+    }
+
+    .refresh-arrow-1 {
+        color: #666666;
+    }
+
+    .refresh-view {
+        width: 750;
+        height: 40wx;
+        display: -ms-flex;
+        display: -webkit-flex;
+        display: flex;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .refresh-view-0 {
+        background-color: #f5f5f5;
+    }
+
+    .refresh-view-1 {
+        background-color: #15253d;
+    }
+
+    .indicator {
+        height: 25wx;
+        width: 25wx;
+        color: #889967;
+    }
+</style>

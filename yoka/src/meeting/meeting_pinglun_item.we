@@ -1,0 +1,161 @@
+<template>
+    <div class="item itemClass-{{skinType}}">
+        <div class="top_div">
+            <image class="user_avatar" src="{{stockitem.img}}"
+                   placeHolder="https://image.taoguba.com.cn/img/user_icon_60.png"></image>
+            <text class="user_name user_name-{{skinType}}">{{stockitem.userName}}</text>
+            <text class="post_time post_time-{{skinType}}">{{formatTime()}}</text>
+        </div>
+        <div class="content_div">
+            <mystockview if={{!is_ios_text}}>
+                {{stockitem.myrichvalue}}
+            </mystockview>
+
+            <myrichtext if={{is_ios_text}} class="myrichtext">{{stockitem.myrichvalue}}</myrichtext>
+            <!--<text class="news_content news_content-{{skinType}}">{{stockitem.content}}</text>-->
+        </div>
+
+        <div class="line lineClass-{{skinType}}"></div>
+    </div>
+</template>
+
+<script>
+    require('weex-components');
+    var date = require('../common/date');
+    var taoguba = require('../taoguba');
+    var weexEventModule = require('@weex-module/weexEventModule');
+    module.exports = {
+        created: function () {
+//            this.stockitem.img = taoguba.getLogoImageUrl(this.stockitem.img);
+            this.platform = this.$getConfig().env.platform;
+            if (this.platform == 'iOS') {
+                this.is_ios_text = 1;
+            }
+            var cskinType = this.$getConfig().skinType;
+            if (cskinType == undefined) {
+                cskinType = taoguba.getUrlParam('skinType');
+            }
+            this.skinType = cskinType;
+        },
+        data: {
+            platform:'',
+            is_ios_text: 0,
+            stockitem: {
+                "seq": null,
+                "feedID": 2921143,
+                "type": "R",
+                "topicID": 2918689,
+                "createdt": 1492591575000,
+                "content": "“紫丁香一号”计划在对接3个月后，通过空间站机械臂释放入轨。",
+                "userName": "开心一刻015",
+                "userID": 1269710,
+                "img": 'https://image.taoguba.com.cn/img/user_icon_60.png',
+                "upNum": 0,
+                 myrichvalue:{}
+            },
+
+
+        },
+        methods: {
+            formatTime: function () {
+                var time;
+                time = this.stockitem.createdt;
+                var strTime;
+//                if (this.platform == 'android') {
+//                  strTime = weexEventModule.TimeFormate("1", time,"yyyy-MM-dd hh:mm");
+//                } else {
+                strTime = date.formatDate(new Date(time), "yyyy-MM-dd hh:mm");
+//                }
+                return strTime;
+            }
+        }
+    }
+</script>
+
+<style>
+    .top_div {
+        flex-direction: row;
+        align-items: center;
+        margin-top: 10wx;
+        margin-right: 10wx;
+    }
+
+    .user_avatar {
+        width: 35wx;
+        height: 35wx;
+        margin-left: 10wx;
+    }
+
+    .user_name {
+        margin-left: 10wx;
+        font-size: 14wx;
+        flex: 1;
+    }
+
+    .user_name-0 {
+        color: #bbbbbb;
+    }
+
+    .user_name-1 {
+        color: #999999;
+    }
+
+    .post_time {
+        font-size: 13wx;
+        flex: 1;
+        text-align: right;
+    }
+
+    .post_time-0 {
+        color: #BBBBBB;
+    }
+
+    .post_time-1 {
+        color: #666666;
+    }
+
+    .content_div {
+        margin-top: 5wx;
+        margin-right: 10wx;
+        margin-left: 56wx;
+    }
+
+    .item {
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .itemClass-0:active {
+        background-color: #dddddd;
+    }
+
+    .itemClass-1:active {
+        background-color: #132237;
+    }
+
+    .news_content {
+        font-size: 14wx;
+    }
+
+    .news_content-0 {
+        color: #555555;
+    }
+
+    .news_content-1 {
+        color: #999999;
+    }
+
+    .line {
+        height: 1wx;
+        margin-top: 10wx;
+    }
+
+    .lineClass-0 {
+        background-color: #DDDDDD;
+    }
+
+    .lineClass-1 {
+        background-color: #0e1929;
+    }
+
+</style>
