@@ -1,0 +1,31 @@
+<template>
+  <image class="slider-item" src="{{item.image}}" onclick="towebdetail"></image>
+</template>
+
+<script>
+    var weexEventModule = require('@weex-module/weexEventModule');
+  module.exports = {
+    data: {
+        item:{
+            image: '',
+            link: ''
+        }
+
+    },
+      created: function () {
+           console.log(this.item.image);
+      },
+    methods: {
+        towebdetail:function (e) {
+            weexEventModule.startYokaWebViewActivity(this.item.link);
+        },
+    }
+  };
+</script>
+
+<style>
+  .slider-item {
+    width: 750;
+    height: 500;
+  }
+</style>
