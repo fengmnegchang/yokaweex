@@ -1,0 +1,119 @@
+<template>
+    <div  class="itemClass itemClass_{{platform}}-{{skinType}}" onclick="todetail">
+        <div class="news-bottom" >
+            <image class="img" src="{{getImgUrl('././images/default_img.png')}}"></image>
+            <text class="tucao_numClass textClass-{{skinType}}">{{stockitem.tucaoNum}}</text>
+        </div>
+        <div class="lineClass lineClass-{{skinType}}"></div>
+    </div>
+</template>
+
+<script>
+    require('weex-components');
+    var yoka = require('../yoka');
+    var navigator = require('@weex-module/navigator')
+    var weexNavigator = require('@weex-module/weexNavigatorModule')
+    var weexEventModule = require('@weex-module/weexEventModule');
+    var weexModalUIModule = require('@weex-module/weexModalUIModule');
+    module.exports = {
+        created: function () {
+            this.platform = this.$getConfig().env.platform;
+        },
+        data: {
+            is_ios_text: 0,
+            platform: '',
+            stockitem: {
+
+            },
+            skinType: 0
+
+
+        },
+        methods: {
+            getImgUrl: function (url) {
+                return yoka.getImageUrl(url);
+            },
+        }
+    }
+</script>
+
+<style>
+    .itemClass{
+        margin-top: 5wx;
+    }
+    .itemClass_android-0:active {
+        background-color: #dddddd
+    }
+    .itemClass_android-1:active {
+        background-color: #132237
+    }
+    .news-bottom {
+        margin-right: 15wx;
+        flex: 1;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .news-content {
+        margin-top: 5wx;
+        margin-left: 10wx;
+        margin-right: 10wx;
+    }
+
+    .numClass {
+        font-size: 11wx;
+        margin-left: 3wx;
+        /*margin-top: 3wx;*/
+    }
+
+    .tucao_numClass {
+        font-size: 12wx;
+        margin-left: 4wx;
+        /*margin-top: 3wx;*/
+    }
+
+    .textClass-0 {
+        color: #BBBBBB;
+    }
+
+    .textClass-1 {
+        color: #666666;
+    }
+
+    .img {
+        width: 200wx;
+        height: 120wx;
+    }
+
+    .lineClass {
+        height: 2wx;
+    }
+
+    .lineClass-0 {
+        background-color: #eeeeee;
+    }
+
+    .lineClass-1 {
+        background-color: #0e1929;
+    }
+
+    .time {
+        align-items: center;
+        justify-content: center;
+        height: 20wx;
+        margin-top: 10wx;
+    }
+
+    .createdt {
+        font-size: 18wx;
+    }
+
+    .createdt-0 {
+        color: #666666;
+    }
+
+    .createdt-1 {
+        color: #999999;
+    }
+</style>

@@ -26,18 +26,8 @@
         },
         created () {
             this.themetype = this.$getConfig().themetype;
+            this.rows.push('fashion/edittj')
             this.rows.push('tabbar')
-            this.rows.push('slider-pager')
-            this.rows.push('stocknews/stocknews')
-            this.rows.push('shuoshuo/shuoshuo')
-            this.rows.push('dayanalysis/dayanalysis')
-            this.rows.push('meeting/meeting-pager')
-
-            this.rows.push('stocknews/stockdetail')
-            this.rows.push('meeting/meetingtime')
-            this.rows.push('meeting/meeting_pinglun')
-            this.rows.push('meeting/meetingdetail')
-            this.rows.push('websocket-demo')
             this.rows.push('scroller-demo')
             this.rows.push('list-demo')
             this.getOptions()

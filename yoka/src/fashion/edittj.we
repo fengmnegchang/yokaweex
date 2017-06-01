@@ -8,9 +8,8 @@
                     下拉刷新
                 </text>
             </refresh>
-
             <cell repeat="{{stockitem in stockArray}}">
-                <day_analysis_item stockitem="{{stockitem}}"></day_analysis_item>
+                <edittj_item stockitem="{{stockitem}}"></edittj_item>
             </cell>
             <loading class="loading-view loading-view-{{skinType}}" display="{{showLoading}}" onloading="onloading">
                 <text class="refresh-arrow refresh-arrow-{{skinType}}">
@@ -23,44 +22,37 @@
 </template>
 
 <script>
-
-    require('weex-components');
     require('../template/navbar.we')
-    require('./day_analysis_item.we')
+    require('weex-components');
+    require('./edittj_item.we')
+    var date = require('../common/date');
+    var taoguba = require('../taoguba');
     var stream = require('@weex-module/stream');
     var modal = require('@weex-module/modal');
-    var taoguba = require('../taoguba');
+    var yoka = require('../yoka');
     var weexEventModule = require('@weex-module/weexEventModule');
     var weexModalUIModule = require('@weex-module/weexModalUIModule');
     module.exports = {
 
         data: {
             refreshing: 'false',
-            refresh_display: 'hide',
+            refresh_display: 'show',
             stockArray: [],
             test: 's-test',
+            msg: '下拉刷新',
             pageNo: 1,
-            platform: 'unknown',
+            endDateNum: 20170419,
             skinType: 0,
-            isFirst: 1,
             showLoading: 'hide',
-            myRichTextColor: [
-                '#666666',
-                '#999999'
-            ],
-            tagTextColor: [
-                '#1191f6',
-                '#005e91'
-            ],
+            screenHeight: 0,
+            platform: '',
         },
-
+        created: function () {
+            var self = this;
+            this.platform = this.$getConfig().env.platform;
+        },
         methods: {
-            autoRefresh: function () {
-                var self = this;
-                this.$call('timer', 'setTimeout', function () {
-                    self.refreshing = 'true';
-                }, 50);
-            },
+
             onloading: function (e) {
                 console.log('onloading');
                 var self = this;
@@ -70,31 +62,30 @@
             },
 
             onrefresh: function (e) {
-                console.log('onrefresh');
                 var self = this;
-                self.pageNo = 1;
+                self.msg = '下拉刷新';
                 self.refresh_display = 'show';
                 self.refresh();
             },
 
             refresh: function () {
-                console.log('refresh');
+                //http://brandservice.yoka.com/v1/?_c=cmsbrandindex&_a=getCmsForZhuNew&_moduleId=29&channel=23&column=103&skip=45&limit=15&p=1&callback=jsonpCallbackFunctionNo14963026168914863
                 var self = this;
-                self.isFirst = 0;
-                var url = taoguba.apiGetAnalysisNews();
+                var url = yoka.apiGetNews();
                 var body = {};
-
                 if (self.platform == 'iOS' || self.platform == 'android') {
                     body.url = url;
+                    body.endDateNum = self.endDateNum;
                     body.pageNo = self.pageNo;
                 }
+
                 stream.fetch({
                         method: 'GET',
-                        url: url + 'pageNo=' + self.pageNo,
+                        url: url + 'skinType=' + self.skinType + '&pageNo=' + self.pageNo + '&endDateNum=' + self.endDateNum,
                         body: body,
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
-                            token: taoguba.getToken(),
+
                         }
                     },
                     function (ret) {
@@ -102,12 +93,10 @@
                         self.showLoading = 'hide';
                         self.refreshing = "false";
                         var result = JSON.stringify(ret);
-
-                        // console.log('dayanalysis.we==' + result);
+                        // console.log('stocknews.we==' + result);
                         if (!ret.ok) {
-//                                    modal.toast({"message":"Network Error!",'duration':2}); 
-                        }
-                        else {
+                            //  modal.toast({"message":"Network Error!",'duration':2}); 
+                        } else {
                             if (self.pageNo == 1) {
                                 self.stockArray.splice(0, self.stockArray.length);
                             }
@@ -118,50 +107,35 @@
                                     json = eval('(' + ret.data + ')');
                                 } catch (e) {
                                 }
-                            }
-                            var resultStatus = '1';
-                            if (typeof window === 'object') {
-                                if (json && json.status == true) {
-                                    resultStatus = '1';
-                                } else {
-                                    resultStatus = '0';
-                                }
-                            }
-                            else if (self.platform == 'iOS') {
-                                resultStatus = '1';
-                            }
-                            else {
-                                resultStatus = weexEventModule.isStatus(json.errorCode, json.status);
-                            }
-                            //var str = JSON.stringify(json);
-                            //console.log('resultStatusAAA=='+resultStatus);
-                            if (resultStatus == '1') {
-                                if (json.dto.list && json.dto.list.length > 0) {
-                                    for (var i = 0; i < json.dto.list.length; i++) {
-                                        var stockitem = json.dto.list[i];
-                                        var myrichvaluejson = {
-                                            content: stockitem.content,
-                                            myrichvalue: [],
-                                            "gravity": "",
-                                            lines:3,
-                                            tagTextColor:self.tagTextColor[self.skinType],
-                                        };
-                                        var  myrich = {};
-                                        myrich.strText = stockitem.content;
-                                        myrich.strTextColor = self.myRichTextColor[self.skinType];
-                                        myrich.strTextSize = 14;
-                                        myrich.onClickType = 0;
-                                        myrichvaluejson.myrichvalue.push(myrich);
-                                        stockitem.myrichvalue = myrichvaluejson;
-                                        self.stockArray.push(stockitem);
-                                    }
-                                }
-                                else {
-                                    if (self.platform != 'web') {
-                                        weexModalUIModule.toast("木有新的数据");
-                                    }
-                                }
 
+                            }
+
+                            if (resultStatus == '1') {
+                                if (json.dto) {
+                                    if (json.dto && json.dto.length > 0) {
+                                        for (var i = 0; i < json.dto.length; i++) {
+                                            //self.stockArray.push(json.dto[i]);
+                                            var stockitem = json.dto[i];
+                                            self.stockArray.push(stockitem);
+                                        }
+                                    } else {
+                                        if (self.pageNo == 1) {
+                                            if (self.platform == 'iOS') {
+                                                //modal.toast({"message":"木有新的数据",'duration':2}); 
+                                            } else if (self.platform == 'android') {
+                                                weexModalUIModule.toast("木有新的数据");
+                                            }
+                                        } else {
+                                            if (self.platform == 'iOS') {
+                                                // modal.toast({"message":"木有更多数据",'duration':2}); 
+                                            } else if (self.platform == 'android') {
+                                                weexModalUIModule.toast("木有更多数据");
+                                            } else {
+                                                console.log("木有更多数据");
+                                            }
+                                        }
+                                    }
+                                }
                             } else {
                                 if (typeof window == 'object') {
                                     console.log(json.errorMessage)
@@ -178,26 +152,20 @@
 
             }
 
-        },
-        created: function () {
-            console.log('created');
-            var self = this;
-            this.platform = this.$getConfig().env.platform;
-            var cskinType = this.$getConfig().skinType;
-            ;
-            if (this.platform != 'iOS' && this.platform != 'android') {
-                cskinType = taoguba.getUrlParam('skinType');
-            }
-            if (cskinType == undefined) {
-                cskinType = 0;
-            }
-            this.skinType = cskinType;
-//                self.refresh();
         }
+
     }
 </script>
 
 <style>
+    .redNum {
+        height: 120;
+        width: 720;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+    }
+
     .list {
         width: 750;
     }
@@ -274,5 +242,44 @@
         height: 25wx;
         width: 25wx;
         color: #889967;
+    }
+
+    .divUnReadClass {
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        padding-top: 20wx;
+    }
+
+    .unReadtextlass {
+        font-size: 14wx;
+    }
+
+    .unReadtextlass-0 {
+        color: #666666;
+        font-size: 14wx;
+    }
+
+    .unReadtextlass-1 {
+        color: #999999;
+        font-size: 14wx;
+    }
+
+    .unReadNumclass {
+        margin-left: 5wx;
+        margin-right: 5wx;
+        font-size: 14wx;
+    }
+
+    .unReadNumclass-0 {
+        color: #1191f6;
+        font-size: 14wx;
+
+    }
+
+    .unReadNumclass-1 {
+        color: #005e91;
+        font-size: 14wx;
     }
 </style>
