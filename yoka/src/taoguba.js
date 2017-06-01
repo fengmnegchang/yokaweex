@@ -1,6 +1,6 @@
 var BASE_URL = {
     //js.taoguba.com.cn/weex/storm (传线上环境注意下一行换成https) 192.168.1.10:8080   192.168.1.15:8080  192.168.1.18:8080   192.168.1.19:8080
-    IP: '192.168.1.10:8080',
+    IP: '192.168.1.15:8080',
     HTTP: 'http://',
     API_URL: 'http://api.taoguba.sp/',
     appzhiboWebSocet: "wss://ws.taoguba.sp/appzhibo",//app 直播websocket地址
@@ -236,8 +236,8 @@ function getBaseUrl(bundleUrl, isnav) {
         // }
 
         if (typeof window === 'object') {
-            if (host.endsWith(':8080/storm') || host.endsWith(':12580/storm')) {
-                host = host.replace('/storm', '');
+            if (host.endsWith(':8080/yoka') || host.endsWith(':12580/yoka')) {
+                host = host.replace('/yoka', '');
                 // console.log('replace local test storm name');
             }
         }
@@ -246,9 +246,9 @@ function getBaseUrl(bundleUrl, isnav) {
         //网页 http://localhost:8080/index.html?page=./dist/weexbar/stocknews.js
         //android 原生 http://192.168.1.15:12580/dist/mainlist.js
         if (typeof window === 'object') {
-            nativeBase = isnav ? BASE_URL.HTTP + host + '/index.html?page=./storm/build/src/' : BASE_URL.HTTP + host + '/storm/build/src/';
+            nativeBase = isnav ? BASE_URL.HTTP + host + '/index.html?page=./yoka/build/src/' : BASE_URL.HTTP + host + '/yoka/build/src/';
         } else {
-            nativeBase = BASE_URL.HTTP + host + '/storm/build/src/';
+            nativeBase = BASE_URL.HTTP + host + '/yoka/build/src/';
             //放在官方仓库 'incubator-weex/examples/TGB_WEEX' 文件夹下编译的话，路径用这个
             // nativeBase = 'http://' + host.replace("8080","12580") + '/examples/build/TGB_WEEX/storm/src/';
         }
