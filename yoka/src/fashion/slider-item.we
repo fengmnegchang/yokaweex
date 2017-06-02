@@ -1,5 +1,5 @@
 <template>
-  <image class="slider-item" src="{{item.image}}" onclick="towebdetail"></image>
+    <image class="slider-item" src="{{item.src}}" onclick="towebdetail"></image>
 </template>
 
 <script>
@@ -7,17 +7,18 @@
   module.exports = {
     data: {
         item:{
-            image: '',
-            link: ''
+            src: '',
+            title:'',
+            href: ''
         }
 
     },
       created: function () {
-           console.log(this.item.image);
+
       },
     methods: {
         towebdetail:function (e) {
-            weexEventModule.startYokaWebViewActivity(this.item.link);
+            weexEventModule.startYokaWebViewActivity(this.item.href);
         },
     }
   };

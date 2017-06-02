@@ -11,24 +11,39 @@
 <script>
     require('weex-components');
     require('./slider-item.we')
+    var yoka = require('../yoka');
+    var weexJsoupModule = require('@weex-module/weexJsoupModule');
     module.exports = {
         data: {
             interval: 1000,
             autoPlay: true,
-            sliderPages: [
-                {
-                    image: 'http://p10.yokacdn.com/pic/YOKA/2017-05-23/U464P1TS1495497335_12100.jpg',
-                    link: 'http://www.yoka.com/fashion/fashionmoment/2017/0526/50751901078248.shtml'
-                },
-                {
-                    image: 'http://p2.yokacdn.com/pic/YOKA/2017-05-31/U219P1TS1496186449_14608.jpg',
-                    link: 'http://www.yoka.com/fashion/fashionmoment/2017/0526/50751901078248.shtml'
-                }
-            ]
+            sliderPages: []
         },
         methods: {
+            refresh: function () {
+                var self = this;
+                weexJsoupModule.focuspager(yoka.getfashionfocus(),function(e){
+                    var json;
+                    json = eval('(' + e + ')');
+                    console.log('json==='+json);
+                    if (json.list) {
+                        if (json.list && json.list.length > 0) {
+                            for (var i = 0; i < json.list.length; i++) {
+                                var stockitem = json.list[i];
+                                self.sliderPages.push(stockitem);
+                            }
+                        }
+                    }
 
-        }
+
+                });
+            }
+        },
+        created: function () {
+            var self = this;
+            self.refresh();
+        },
+
     };
 </script>
 
