@@ -1,7 +1,7 @@
 var BASE_URL = {
     //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080
-    IP: '192.168.1.15:8080',
-    HTTP: 'http://',//https:// http://
+    IP: 'raw.githubusercontent.com/fengmnegchang/yokaweex/master',
+    HTTP: 'https://',//https:// http://
 
 };
 

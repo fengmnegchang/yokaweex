@@ -45,9 +45,9 @@
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(149)
-	var __weex_style__ = __webpack_require__(150)
-	var __weex_script__ = __webpack_require__(151)
+	var __weex_template__ = __webpack_require__(154)
+	var __weex_style__ = __webpack_require__(155)
+	var __weex_script__ = __webpack_require__(156)
 
 	__weex_define__('@weex-component/9ce8c5696a901e1e935421bcb1cbb4e5', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -66,13 +66,13 @@
 
 /***/ },
 
-/***/ 87:
+/***/ 127:
 /***/ function(module, exports) {
 
 	var BASE_URL = {
 	    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080
-	    IP: '192.168.1.15:8080',
-	    HTTP: 'http://',//https:// http://
+	    IP: 'raw.githubusercontent.com/fengmnegchang/yokaweex/master',
+	    HTTP: 'https://',//https:// http://
 
 	};
 
@@ -80,6 +80,7 @@
 	    edittj:"http://brandservice.yoka.com/v1/?_c=cmsbrandindex&_a=getCmsForZhuNew&_moduleId=29&channel=23&column=103&skip=45&limit=15&p=",
 	    fashion_focus:"http://www.yoka.com/club/",
 	    fashion_foot_tag:"http://www.yoka.com/club/",
+
 	};
 	exports.getfashionfoottag = function () {
 	    var url = YOKA.fashion_foot_tag;
@@ -184,7 +185,7 @@
 
 /***/ },
 
-/***/ 149:
+/***/ 154:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -226,7 +227,7 @@
 
 /***/ },
 
-/***/ 150:
+/***/ 155:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -260,7 +261,7 @@
 
 /***/ },
 
-/***/ 151:
+/***/ 156:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -270,7 +271,7 @@
 	});
 	var navigator = __weex_require__('@weex-module/navigator');
 
-	var yoka = __webpack_require__(87);
+	var yoka = __webpack_require__(127);
 
 	var globalEventModule = __weex_require__('@weex-module/globalEvent');
 	exports.default = {
@@ -285,6 +286,8 @@
 	        this.rows.push('fashion/edittj');
 	        this.rows.push('fashion/focuspager');
 	        this.rows.push('fashion/foottag');
+	        this.rows.push('fashion-tabbar');
+	        this.rows.push('menu/menutab');
 	        this.rows.push('tabbar');
 	        this.rows.push('scroller-demo');
 	        this.rows.push('list-demo');
