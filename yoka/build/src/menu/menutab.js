@@ -2143,8 +2143,9 @@
 	        url = BASE_URL.HTTP + BASE_URL.IP + '/yoka' + path.substring(1, path.length);
 	    } else {
 	        url = BASE_URL.HTTP + BASE_URL.IP + '/yoka' + path.substring(1, path.length);
-	        ;
+
 	    }
+	    console.log('getImageUrl=='+url);
 	    return url;
 	};
 

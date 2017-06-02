@@ -430,7 +430,7 @@
 	                "img"
 	              ],
 	              "attr": {
-	                "src": function () {return this.getImgUrl('./images/leftw_')}
+	                "src": function () {return this.getImgUrl('./images/login.png')}
 	              },
 	              "shown": function () {return this.shownleft}
 	            }
@@ -443,11 +443,14 @@
 	          ],
 	          "children": [
 	            {
-	              "type": "text",
-	              "classList": function () {return ['nav_text', 'nav_text-' + (this.type), 'nav_text_top-' + (this.nav_text_top)]},
+	              "type": "image",
+	              "classList": [
+	                "imglogo"
+	              ],
 	              "attr": {
-	                "value": function () {return this.title}
-	              }
+	                "src": function () {return this.getImgUrl('./images/logo.png')}
+	              },
+	              "shown": function () {return this.shownleft}
 	            }
 	          ]
 	        },
@@ -471,7 +474,7 @@
 	                    "img_menu"
 	                  ],
 	                  "attr": {
-	                    "src": function () {return this.getImgUrl('./images/quanq_')}
+	                    "src": function () {return this.getImgUrl('./images/zoom.png')}
 	                  }
 	                }
 	              ]
@@ -496,23 +499,25 @@
 	    "display": "flex",
 	    "flexDirection": "row",
 	    "flex": 1,
-	    "height": "45wx"
+	    "height": 80,
+	    "justifyContent": "center",
+	    "alignItems": "center"
 	  },
 	  "nav_bar-0": {
-	    "backgroundColor": "#1191f6"
+	    "backgroundColor": "#000000"
 	  },
 	  "nav_bar-1": {
-	    "backgroundColor": "#192c46"
+	    "backgroundColor": "#000000"
 	  },
 	  "nav_text": {
 	    "fontSize": "20wx",
 	    "flex": 1,
 	    "justifyContent": "center",
 	    "alignItems": "center",
-	    "marginTop": 20
+	    "marginTop": 1
 	  },
 	  "nav_text_top-0": {
-	    "marginTop": 30
+	    "marginTop": 1
 	  },
 	  "nav_text_top-1": {
 	    "marginTop": 1
@@ -521,7 +526,7 @@
 	    "color": "#FFFFFF"
 	  },
 	  "nav_text-1": {
-	    "color": "#55aad8"
+	    "color": "#ffffff"
 	  },
 	  "nav_title": {
 	    "flex": 1,
@@ -534,34 +539,40 @@
 	    "justifyContent": "center",
 	    "alignItems": "center",
 	    "width": "45wx",
-	    "height": "45wx"
+	    "height": 80
 	  },
 	  "nav_right_menu": {
-	    "width": 45,
-	    "height": 45,
+	    "width": "45wx",
+	    "height": 80,
 	    "justifyContent": "center",
 	    "alignItems": "center"
 	  },
 	  "img": {
-	    "width": "45wx",
-	    "height": "45wx",
-	    "padding": "11.5wx"
+	    "width": 70,
+	    "height": 70,
+	    "marginLeft": 20
 	  },
 	  "nav_back-0": {
-	    "backgroundColor:active": "#0E7BF6"
+	    "backgroundColor:active": "#000000"
 	  },
 	  "nav_back-1": {
-	    "backgroundColor:active": "#132237"
+	    "backgroundColor:active": "#000000"
 	  },
 	  "nav_right_menu-0": {
-	    "backgroundColor": "#0E7BF6"
+	    "backgroundColor": "#000000"
 	  },
 	  "nav_right_menu-1": {
-	    "backgroundColor": "#132237"
+	    "backgroundColor": "#000000"
 	  },
 	  "img_menu": {
-	    "width": 60,
-	    "height": 20
+	    "width": 50,
+	    "height": 50,
+	    "marginRight": 20
+	  },
+	  "imglogo": {
+	    "width": 240,
+	    "flex": 1,
+	    "height": 50
 	  },
 	  "nav_line": {
 	    "height": 1
@@ -576,10 +587,10 @@
 	    "height": "20wx"
 	  },
 	  "status_bar-0": {
-	    "backgroundColor": "#1191f6"
+	    "backgroundColor": "#000000"
 	  },
 	  "status_bar-1": {
-	    "backgroundColor": "#192c46"
+	    "backgroundColor": "#000000"
 	  }
 	}
 
@@ -633,7 +644,6 @@
 	        },
 
 	        getImgUrl: function getImgUrl(url) {
-	            url = url + this.type + '.png';
 	            return yoka.getImageUrl(url);
 	        },
 
@@ -3502,8 +3512,9 @@
 	        url = BASE_URL.HTTP + BASE_URL.IP + '/yoka' + path.substring(1, path.length);
 	    } else {
 	        url = BASE_URL.HTTP + BASE_URL.IP + '/yoka' + path.substring(1, path.length);
-	        ;
+
 	    }
+	    console.log('getImageUrl=='+url);
 	    return url;
 	};
 
