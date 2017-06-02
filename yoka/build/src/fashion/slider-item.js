@@ -75,7 +75,7 @@
 	    "slider-item"
 	  ],
 	  "attr": {
-	    "src": function () {return this.item.image}
+	    "src": function () {return this.item.src}
 	  },
 	  "events": {
 	    "click": "towebdetail"
@@ -105,17 +105,16 @@
 	module.exports = {
 	    data: function () {return {
 	        item: {
-	            image: '',
-	            link: ''
+	            src: '',
+	            title: '',
+	            href: ''
 	        }
 
 	    }},
-	    created: function created() {
-	        console.log(this.item.image);
-	    },
+	    created: function created() {},
 	    methods: {
 	        towebdetail: function towebdetail(e) {
-	            weexEventModule.startYokaWebViewActivity(this.item.link);
+	            weexEventModule.startYokaWebViewActivity(this.item.href);
 	        }
 	    }
 	};}

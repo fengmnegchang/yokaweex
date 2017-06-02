@@ -2032,17 +2032,27 @@
 /***/ function(module, exports) {
 
 	var BASE_URL = {
-	    //https://github.com/fengmnegchang/yokaweex
-	    IP: 'raw.githubusercontent.com/fengmnegchang/yokaweex/master',
-	    HTTP: 'https://',
+	    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080
+	    IP: '192.168.1.15:8080',
+	    HTTP: 'http://',//https:// http://
 
 	};
 
 	var YOKA = {
 	    edittj:"http://brandservice.yoka.com/v1/?_c=cmsbrandindex&_a=getCmsForZhuNew&_moduleId=29&channel=23&column=103&skip=45&limit=15&p=",
-
+	    fashion_focus:"http://www.yoka.com/club/",
+	    fashion_foot_tag:"http://www.yoka.com/club/",
 	};
-
+	exports.getfashionfoottag = function () {
+	    var url = YOKA.fashion_foot_tag;
+	    console.log('fashion_foot_tag==' + url);
+	    return url;
+	};
+	exports.getfashionfocus = function () {
+	    var url = YOKA.fashion_focus;
+	    console.log('fashion_focus==' + url);
+	    return url;
+	};
 	exports.getedittj = function () {
 	    var url = YOKA.edittj;
 	    console.log('edittj==' + url);

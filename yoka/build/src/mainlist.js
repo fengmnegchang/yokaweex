@@ -45,9 +45,9 @@
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(142)
-	var __weex_style__ = __webpack_require__(143)
-	var __weex_script__ = __webpack_require__(144)
+	var __weex_template__ = __webpack_require__(149)
+	var __weex_style__ = __webpack_require__(150)
+	var __weex_script__ = __webpack_require__(151)
 
 	__weex_define__('@weex-component/9ce8c5696a901e1e935421bcb1cbb4e5', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -70,17 +70,27 @@
 /***/ function(module, exports) {
 
 	var BASE_URL = {
-	    //https://github.com/fengmnegchang/yokaweex
-	    IP: 'raw.githubusercontent.com/fengmnegchang/yokaweex/master',
-	    HTTP: 'https://',
+	    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080
+	    IP: '192.168.1.15:8080',
+	    HTTP: 'http://',//https:// http://
 
 	};
 
 	var YOKA = {
 	    edittj:"http://brandservice.yoka.com/v1/?_c=cmsbrandindex&_a=getCmsForZhuNew&_moduleId=29&channel=23&column=103&skip=45&limit=15&p=",
-
+	    fashion_focus:"http://www.yoka.com/club/",
+	    fashion_foot_tag:"http://www.yoka.com/club/",
 	};
-
+	exports.getfashionfoottag = function () {
+	    var url = YOKA.fashion_foot_tag;
+	    console.log('fashion_foot_tag==' + url);
+	    return url;
+	};
+	exports.getfashionfocus = function () {
+	    var url = YOKA.fashion_focus;
+	    console.log('fashion_focus==' + url);
+	    return url;
+	};
 	exports.getedittj = function () {
 	    var url = YOKA.edittj;
 	    console.log('edittj==' + url);
@@ -174,7 +184,7 @@
 
 /***/ },
 
-/***/ 142:
+/***/ 149:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -216,7 +226,7 @@
 
 /***/ },
 
-/***/ 143:
+/***/ 150:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -250,7 +260,7 @@
 
 /***/ },
 
-/***/ 144:
+/***/ 151:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -274,6 +284,7 @@
 	        this.themetype = this.$getConfig().themetype;
 	        this.rows.push('fashion/edittj');
 	        this.rows.push('fashion/focuspager');
+	        this.rows.push('fashion/foottag');
 	        this.rows.push('tabbar');
 	        this.rows.push('scroller-demo');
 	        this.rows.push('list-demo');

@@ -44,8 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(148)
-	var __weex_script__ = __webpack_require__(149)
+	var __weex_template__ = __webpack_require__(155)
+	var __weex_script__ = __webpack_require__(156)
 
 	__weex_define__('@weex-component/0d1beb26803cad40ac7266bf4d5baca6', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -2029,17 +2029,27 @@
 /***/ function(module, exports) {
 
 	var BASE_URL = {
-	    //https://github.com/fengmnegchang/yokaweex
-	    IP: 'raw.githubusercontent.com/fengmnegchang/yokaweex/master',
-	    HTTP: 'https://',
+	    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080
+	    IP: '192.168.1.15:8080',
+	    HTTP: 'http://',//https:// http://
 
 	};
 
 	var YOKA = {
 	    edittj:"http://brandservice.yoka.com/v1/?_c=cmsbrandindex&_a=getCmsForZhuNew&_moduleId=29&channel=23&column=103&skip=45&limit=15&p=",
-
+	    fashion_focus:"http://www.yoka.com/club/",
+	    fashion_foot_tag:"http://www.yoka.com/club/",
 	};
-
+	exports.getfashionfoottag = function () {
+	    var url = YOKA.fashion_foot_tag;
+	    console.log('fashion_foot_tag==' + url);
+	    return url;
+	};
+	exports.getfashionfocus = function () {
+	    var url = YOKA.fashion_focus;
+	    console.log('fashion_focus==' + url);
+	    return url;
+	};
 	exports.getedittj = function () {
 	    var url = YOKA.edittj;
 	    console.log('edittj==' + url);
@@ -2192,7 +2202,14 @@
 /* 145 */,
 /* 146 */,
 /* 147 */,
-/* 148 */
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2211,7 +2228,7 @@
 	}
 
 /***/ },
-/* 149 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
