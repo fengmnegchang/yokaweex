@@ -29,6 +29,7 @@
             this.rows.push('fashion/edittj')
             this.rows.push('fashion/focuspager')
             this.rows.push('fashion/foottag')
+            this.rows.push('fashion-tabbar')
             this.rows.push('tabbar')
             this.rows.push('scroller-demo')
             this.rows.push('list-demo')

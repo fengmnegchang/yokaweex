@@ -19,6 +19,7 @@
     require('weex-components');
     var yoka = require('../yoka');
     var weexJsoupModule = require('@weex-module/weexJsoupModule');
+    var storage = require('@weex-module/storage');
     module.exports = {
         data: {
             tags: [],
@@ -26,6 +27,7 @@
             refresh_display: 'show',
             skinType: 0,
             showLoading: 'hide',
+            taghref:yoka.getfashionfoottag()
         },
         methods: {
             onrefresh: function (e) {
@@ -35,7 +37,7 @@
             },
             refresh: function () {
                 var self = this;
-                weexJsoupModule.foottag(yoka.getfashionfoottag(),function(e){
+                weexJsoupModule.foottag(self.taghref,function(e){
                     self.refresh_display = 'hide';
                     self.showLoading = 'hide';
                     self.refreshing = "false";
@@ -67,7 +69,19 @@
         },
         created: function () {
             var self = this;
-            self.refresh();
+            storage.getItem('taghref',function(s){
+                console.log('get taghref result:'+JSON.stringify(s));
+                var staghref = s.data;
+                if(staghref!=undefined){
+                    self.taghref = staghref;
+                }
+                console.log('taghref=='+self.taghref);
+                self.refresh();
+            });
+
+        },
+        ready: function () {
+
         },
 
     };
