@@ -78,7 +78,11 @@
 
             refresh: function () {
                 var self = this;
-                weexJsoupModule.boxlist(self.taghref,function(e){
+                var params = {
+                    url:self.taghref,
+                    pageNo: self.pageNo
+                };
+                weexJsoupModule.boxlist(params,function(e){
                     self.refresh_display = 'hide';
                     self.showLoading = 'hide';
                     self.refreshing = "false";
