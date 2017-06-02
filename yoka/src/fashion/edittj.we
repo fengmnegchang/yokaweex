@@ -1,5 +1,6 @@
 <template>
     <div>
+        <navbar  title="{{title}}" type="{{skinType}}" shownleft="{{showleft}}" shown="{{shown}}"></navbar>
         <list class="list">
             <refresh class="refresh-view refresh-view-{{skinType}}" display="{{refresh_display}}" onrefresh="onrefresh"
                      refreshing="{{refreshing}}">
@@ -41,6 +42,9 @@
             showLoading: 'hide',
             screenHeight: 0,
             platform: '',
+            title:'搭配',
+            showleft:true,
+            shown:true
         },
         created: function () {
             var self = this;
