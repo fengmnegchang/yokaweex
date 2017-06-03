@@ -1,7 +1,8 @@
 var BASE_URL = {
-    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080
-    IP: 'raw.githubusercontent.com/fengmnegchang/yokaweex/master',
-    HTTP: 'https://',//https:// http://
+    //win 执行start npm run build:native  npm run build:browser  npm run serve &  npm run dev:yoka
+    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080 192.168.1.9:8080
+    IP: '192.168.1.9:8080',
+    HTTP: 'http://',//https:// http://
 
 };
 
@@ -9,7 +10,13 @@ var YOKA = {
     edittj:"http://brandservice.yoka.com/v1/?_c=cmsbrandindex&_a=getCmsForZhuNew&_moduleId=29&channel=23&column=103&skip=45&limit=15&p=",
     fashion_focus:"http://www.yoka.com/club/",
     fashion_foot_tag:"http://www.yoka.com/club/",
+    beauty:"http://www.yoka.com/beauty/",
 
+};
+exports.getbeauty = function () {
+    var url = YOKA.beauty;
+    console.log('beauty==' + url);
+    return url;
 };
 exports.getfashionfoottag = function () {
     var url = YOKA.fashion_foot_tag;

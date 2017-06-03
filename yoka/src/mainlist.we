@@ -5,19 +5,14 @@
                 <text ref="mainlist_text_day_night_ref" class="{{textClass}}" onclick="openitem">{{row}}</text>
             </div>
         </scroller>
-
     </div>
 </template>
-
 <script>
+require('weex-components')
     var navigator = require('@weex-module/navigator')
-
-    // var navigator = require('@weex-module/weexNavigatorModule')
-
     var yoka = require('./yoka');
-
     var globalEventModule = require('@weex-module/globalEvent');
-    export default {
+    module.exports = {
         data: {
             rows: [],
             themetype: 0,
@@ -31,6 +26,7 @@
             this.rows.push('fashion/foottag')
             this.rows.push('fashion-tabbar')
             this.rows.push('menu/menutab')
+            this.rows.push('fashion/bodytag')
             this.rows.push('tabbar')
             this.rows.push('scroller-demo')
             this.rows.push('list-demo')
