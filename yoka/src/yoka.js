@@ -11,7 +11,13 @@ var YOKA = {
     fashion_focus:"http://www.yoka.com/club/",
     fashion_foot_tag:"http://www.yoka.com/club/",
     beauty:"http://www.yoka.com/beauty/",
+    yokam:"http://www.yoka.com/dna/m/",
 
+};
+exports.getyokam = function () {
+    var url = YOKA.yokam;
+    console.log('yokam==' + url);
+    return url;
 };
 exports.getbeauty = function () {
     var url = YOKA.beauty;
