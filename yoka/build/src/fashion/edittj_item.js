@@ -48,7 +48,7 @@
 	var __weex_style__ = __webpack_require__(130)
 	var __weex_script__ = __webpack_require__(131)
 
-	__weex_define__('@weex-component/2a2b3ccf0bc651a6bede7b190047e22b', [], function(__weex_require__, __weex_exports__, __weex_module__) {
+	__weex_define__('@weex-component/a2ec128fbb64daba4ae45ecac3590ad5', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
 	    __weex_script__(__weex_module__, __weex_exports__, __weex_require__)
 	    if (__weex_exports__.__esModule && __weex_exports__.default) {
@@ -61,7 +61,7 @@
 
 	})
 
-	__weex_bootstrap__('@weex-component/2a2b3ccf0bc651a6bede7b190047e22b',undefined,undefined)
+	__weex_bootstrap__('@weex-component/a2ec128fbb64daba4ae45ecac3590ad5',undefined,undefined)
 
 /***/ },
 /* 1 */,
@@ -2072,7 +2072,8 @@
 /***/ function(module, exports) {
 
 	var BASE_URL = {
-	    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080
+	    //win 执行start npm run build:native  npm run build:browser  npm run serve &  npm run dev:yoka
+	    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080 192.168.1.9:8080
 	    IP: 'raw.githubusercontent.com/fengmnegchang/yokaweex/master',
 	    HTTP: 'https://',//https:// http://
 
@@ -2082,7 +2083,19 @@
 	    edittj:"http://brandservice.yoka.com/v1/?_c=cmsbrandindex&_a=getCmsForZhuNew&_moduleId=29&channel=23&column=103&skip=45&limit=15&p=",
 	    fashion_focus:"http://www.yoka.com/club/",
 	    fashion_foot_tag:"http://www.yoka.com/club/",
+	    beauty:"http://www.yoka.com/beauty/",
+	    yokam:"http://www.yoka.com/dna/m/",
 
+	};
+	exports.getyokam = function () {
+	    var url = YOKA.yokam;
+	    console.log('yokam==' + url);
+	    return url;
+	};
+	exports.getbeauty = function () {
+	    var url = YOKA.beauty;
+	    console.log('beauty==' + url);
+	    return url;
 	};
 	exports.getfashionfoottag = function () {
 	    var url = YOKA.fashion_foot_tag;
@@ -2134,7 +2147,12 @@
 	    return url;
 	};
 
-
+	exports.getUrl = function (path) {
+	    var url;
+	    url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
+	    console.log('getUrl==' + url);
+	    return url;
+	};
 
 	function getBaseUrl(bundleUrl, isnav) {
 	    bundleUrl = new String(bundleUrl);

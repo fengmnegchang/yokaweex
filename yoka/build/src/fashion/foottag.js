@@ -44,12 +44,12 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(144)
-	var __weex_template__ = __webpack_require__(148)
-	var __weex_style__ = __webpack_require__(149)
-	var __weex_script__ = __webpack_require__(150)
+	__webpack_require__(158)
+	var __weex_template__ = __webpack_require__(162)
+	var __weex_style__ = __webpack_require__(163)
+	var __weex_script__ = __webpack_require__(164)
 
-	__weex_define__('@weex-component/cebede30bba40a600af028a97e5a483c', [], function(__weex_require__, __weex_exports__, __weex_module__) {
+	__weex_define__('@weex-component/02eab75f03530efff55ad30be2e0ac9d', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
 	    __weex_script__(__weex_module__, __weex_exports__, __weex_require__)
 	    if (__weex_exports__.__esModule && __weex_exports__.default) {
@@ -62,7 +62,7 @@
 
 	})
 
-	__weex_bootstrap__('@weex-component/cebede30bba40a600af028a97e5a483c',undefined,undefined)
+	__weex_bootstrap__('@weex-component/02eab75f03530efff55ad30be2e0ac9d',undefined,undefined)
 
 /***/ },
 /* 1 */,
@@ -2087,7 +2087,8 @@
 /***/ function(module, exports) {
 
 	var BASE_URL = {
-	    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080
+	    //win 执行start npm run build:native  npm run build:browser  npm run serve &  npm run dev:yoka
+	    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080 192.168.1.9:8080
 	    IP: 'raw.githubusercontent.com/fengmnegchang/yokaweex/master',
 	    HTTP: 'https://',//https:// http://
 
@@ -2097,7 +2098,19 @@
 	    edittj:"http://brandservice.yoka.com/v1/?_c=cmsbrandindex&_a=getCmsForZhuNew&_moduleId=29&channel=23&column=103&skip=45&limit=15&p=",
 	    fashion_focus:"http://www.yoka.com/club/",
 	    fashion_foot_tag:"http://www.yoka.com/club/",
+	    beauty:"http://www.yoka.com/beauty/",
+	    yokam:"http://www.yoka.com/dna/m/",
 
+	};
+	exports.getyokam = function () {
+	    var url = YOKA.yokam;
+	    console.log('yokam==' + url);
+	    return url;
+	};
+	exports.getbeauty = function () {
+	    var url = YOKA.beauty;
+	    console.log('beauty==' + url);
+	    return url;
 	};
 	exports.getfashionfoottag = function () {
 	    var url = YOKA.fashion_foot_tag;
@@ -2149,7 +2162,12 @@
 	    return url;
 	};
 
-
+	exports.getUrl = function (path) {
+	    var url;
+	    url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
+	    console.log('getUrl==' + url);
+	    return url;
+	};
 
 	function getBaseUrl(bundleUrl, isnav) {
 	    bundleUrl = new String(bundleUrl);
@@ -2218,12 +2236,26 @@
 /* 141 */,
 /* 142 */,
 /* 143 */,
-/* 144 */
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(145)
-	var __weex_style__ = __webpack_require__(146)
-	var __weex_script__ = __webpack_require__(147)
+	var __weex_template__ = __webpack_require__(159)
+	var __weex_style__ = __webpack_require__(160)
+	var __weex_script__ = __webpack_require__(161)
 
 	__weex_define__('@weex-component/foottag_item', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -2240,7 +2272,7 @@
 
 
 /***/ },
-/* 145 */
+/* 159 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2277,7 +2309,7 @@
 	}
 
 /***/ },
-/* 146 */
+/* 160 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2321,7 +2353,7 @@
 	}
 
 /***/ },
-/* 147 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -2352,7 +2384,7 @@
 
 
 /***/ },
-/* 148 */
+/* 162 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2412,7 +2444,7 @@
 	}
 
 /***/ },
-/* 149 */
+/* 163 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2479,7 +2511,7 @@
 	}
 
 /***/ },
-/* 150 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -2490,7 +2522,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(144);
+	__webpack_require__(158);
 	__webpack_require__(78);
 	var yoka = __webpack_require__(127);
 	var weexJsoupModule = __weex_require__('@weex-module/weexJsoupModule');

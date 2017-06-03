@@ -44,11 +44,11 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(158)
-	var __weex_style__ = __webpack_require__(159)
-	var __weex_script__ = __webpack_require__(160)
+	var __weex_template__ = __webpack_require__(172)
+	var __weex_style__ = __webpack_require__(173)
+	var __weex_script__ = __webpack_require__(174)
 
-	__weex_define__('@weex-component/f60cd53a2bc958e0bd51f1cc954c184f', [], function(__weex_require__, __weex_exports__, __weex_module__) {
+	__weex_define__('@weex-component/27f0bfe6298167bb8ff4e5554be559b1', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
 	    __weex_script__(__weex_module__, __weex_exports__, __weex_require__)
 	    if (__weex_exports__.__esModule && __weex_exports__.default) {
@@ -61,7 +61,7 @@
 
 	})
 
-	__weex_bootstrap__('@weex-component/f60cd53a2bc958e0bd51f1cc954c184f',undefined,undefined)
+	__weex_bootstrap__('@weex-component/27f0bfe6298167bb8ff4e5554be559b1',undefined,undefined)
 
 /***/ },
 /* 1 */,
@@ -2072,7 +2072,8 @@
 /***/ function(module, exports) {
 
 	var BASE_URL = {
-	    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080
+	    //win 执行start npm run build:native  npm run build:browser  npm run serve &  npm run dev:yoka
+	    //raw.githubusercontent.com/fengmnegchang/yokaweex/master 192.168.1.15:8080 192.168.1.9:8080
 	    IP: 'raw.githubusercontent.com/fengmnegchang/yokaweex/master',
 	    HTTP: 'https://',//https:// http://
 
@@ -2082,7 +2083,19 @@
 	    edittj:"http://brandservice.yoka.com/v1/?_c=cmsbrandindex&_a=getCmsForZhuNew&_moduleId=29&channel=23&column=103&skip=45&limit=15&p=",
 	    fashion_focus:"http://www.yoka.com/club/",
 	    fashion_foot_tag:"http://www.yoka.com/club/",
+	    beauty:"http://www.yoka.com/beauty/",
+	    yokam:"http://www.yoka.com/dna/m/",
 
+	};
+	exports.getyokam = function () {
+	    var url = YOKA.yokam;
+	    console.log('yokam==' + url);
+	    return url;
+	};
+	exports.getbeauty = function () {
+	    var url = YOKA.beauty;
+	    console.log('beauty==' + url);
+	    return url;
 	};
 	exports.getfashionfoottag = function () {
 	    var url = YOKA.fashion_foot_tag;
@@ -2134,7 +2147,12 @@
 	    return url;
 	};
 
-
+	exports.getUrl = function (path) {
+	    var url;
+	    url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
+	    console.log('getUrl==' + url);
+	    return url;
+	};
 
 	function getBaseUrl(bundleUrl, isnav) {
 	    bundleUrl = new String(bundleUrl);
@@ -2217,7 +2235,21 @@
 /* 155 */,
 /* 156 */,
 /* 157 */,
-/* 158 */
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2250,7 +2282,7 @@
 	}
 
 /***/ },
-/* 159 */
+/* 173 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2294,7 +2326,7 @@
 	}
 
 /***/ },
-/* 160 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
