@@ -1,14 +1,13 @@
 <template>
    <div class="wrapper">
     <div id="menu" class="menu menu-{{showmenu}}" style="height: {{deviceHeight}}" onclick="close">
-        <div class="menu-header ">
-            <text class="menu-header-title" >主题</text>
+        <div class="menu-header menu-header-{{showmenu}}">
+            <menutab></menutab>
         </div>
     </div>
     <div id="main" class="panel panel-{{showmenu}}" style="height: {{deviceHeight}}" onclick="toggle">
         <div class="btn-hamburger" >
-            <image style="width: 50;height: 50" src="{{srcmenu}}"></image>
-            <text class="tooltip">点击打开</text>
+            <edittj></edittj>
         </div>
     </div>
    </div>
@@ -17,9 +16,13 @@
 
 <script>
     var yoka = require('./yoka');
+    require('./menu/menutab.we')
+    require('./fashion/edittj.we')
+    require('weex-components');
+
     module.exports = {
         data: {
-            srcmenu: yoka.getUrl('/html/images/menu.png'),
+            srcmenu: yoka.getUrl('html/images/menu.png'),
             showmenu:0,
             deviceHeight:0,
             platform:''
@@ -54,7 +57,6 @@
 
     .panel {
         width: 750;
-        background-color: #00BDFF;
     }
 
     .panel-0 {
@@ -66,11 +68,12 @@
     }
 
     .menu {
-        background-color: #1D1F20;
-        background-image: linear-gradient(145deg, #1D1F20, #404348);
+        background-color: #dddddd;
         right: -750;
         position: absolute;
         width: 750;
+        align-items: flex-start;
+        justify-content: flex-start;
 
     }
     .menu-0{
@@ -78,7 +81,7 @@
     }
 
     .menu-1{
-        right: 0;
+        right: 150;
     }
 
     .btn-hamburger {
@@ -96,6 +99,17 @@
 
     .menu-header {
         padding: 20px 0 20px 60px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: absolute;
+    }
+
+    .menu-header-0{
+        right: 0;
+    }
+
+    .menu-header-0{
+        right: 0;
     }
 
     .menu-header-title {
