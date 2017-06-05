@@ -309,10 +309,7 @@
 
 	    methods: {
 	        nativeback: function nativeback(e) {
-	            var params = {
-	                'animated': 'true'
-	            };
-	            navigator.pop(params, function (event) {});
+	            this._parent.togglemenu();
 	        },
 	        onright: function onright(e) {
 	            console.log('navbar == onright');
@@ -3208,13 +3205,7 @@
 
 	exports.getUrl = function (path) {
 	    var url;
-	    if (typeof window === 'object') {
-	        url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
-
-	    }else{
-	        url =  BASE_URL.HTTP +BASE_URL.IP + '/index.html?page=./' +path;
-	    }
-
+	    url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
 	    console.log('getUrl==' + url);
 	    return url;
 	};

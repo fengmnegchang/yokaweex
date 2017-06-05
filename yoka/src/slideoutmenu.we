@@ -40,7 +40,11 @@
         },
         methods: {
             toggle: function (e) {
-                this.showmenu = 1;
+                if(this.showmenu==0){
+                    this.showmenu = 1;
+                }else{
+                    this.showmenu = 0;
+                }
             },
             close: function (e) {
                 this.showmenu = 0;

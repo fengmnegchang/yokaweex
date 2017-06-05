@@ -52,7 +52,9 @@
             self.refresh();
         },
         methods: {
-
+            togglemenu:function () {
+                this._parent.toggle();
+            },
             onloading: function (e) {
                 console.log('onloading');
                 var self = this;

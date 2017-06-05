@@ -2149,13 +2149,7 @@
 
 	exports.getUrl = function (path) {
 	    var url;
-	    if (typeof window === 'object') {
-	        url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
-
-	    }else{
-	        url =  BASE_URL.HTTP +BASE_URL.IP + '/index.html?page=./' +path;
-	    }
-
+	    url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
 	    console.log('getUrl==' + url);
 	    return url;
 	};
@@ -2293,7 +2287,7 @@
 
 	module.exports = {
 	  "itemClass": {
-	    "marginTop": "5wx"
+	    "margin": 10
 	  },
 	  "news-bottom": {
 	    "flex": 1,
@@ -2308,9 +2302,7 @@
 	    "alignItems": "center",
 	    "textAlign": "center",
 	    "margin": 10,
-	    "padding": 10,
-	    "borderWidth": 1,
-	    "borderColor": "#6F5F5F"
+	    "padding": 10
 	  },
 	  "textClass-0": {
 	    "color:active": "#666666",
@@ -2321,7 +2313,7 @@
 	    "backgroundColor:active": "#132237"
 	  },
 	  "lineClass": {
-	    "height": "2wx"
+	    "height": 2
 	  },
 	  "lineClass-0": {
 	    "backgroundColor": "#eeeeee"

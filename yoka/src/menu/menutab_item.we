@@ -36,7 +36,7 @@
 
 <style>
     .itemClass{
-        margin-top: 5wx;
+        margin: 10;
     }
 
     .news-bottom {
@@ -54,8 +54,6 @@
         text-align: center;
         margin: 10;
         padding: 10;
-        border-width: 1;
-        border-color: #6F5F5F;
 
     }
 
@@ -74,7 +72,7 @@
 
 
     .lineClass {
-        height: 2wx;
+        height: 2;
     }
 
     .lineClass-0 {

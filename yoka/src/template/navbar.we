@@ -51,12 +51,13 @@
 
         methods: {
             nativeback: function (e) {
-                var params = {
-                    'animated': 'true'
-                };
-                navigator.pop(params, event => {
-
-                });
+//                var params = {
+//                    'animated': 'true'
+//                };
+//                navigator.pop(params, event => {
+//
+//                });
+                this._parent.togglemenu();
             },
             onright: function (e) {
                 console.log('navbar == onright');
