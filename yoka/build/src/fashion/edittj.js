@@ -3244,7 +3244,13 @@
 
 	exports.getUrl = function (path) {
 	    var url;
-	    url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
+	    if (typeof window === 'object') {
+	        url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
+
+	    }else{
+	        url =  BASE_URL.HTTP +BASE_URL.IP + '/index.html?page=./' +path;
+	    }
+
 	    console.log('getUrl==' + url);
 	    return url;
 	};

@@ -2149,7 +2149,13 @@
 
 	exports.getUrl = function (path) {
 	    var url;
-	    url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
+	    if (typeof window === 'object') {
+	        url = BASE_URL.HTTP+BASE_URL.IP+'/'+path;
+
+	    }else{
+	        url =  BASE_URL.HTTP +BASE_URL.IP + '/index.html?page=./' +path;
+	    }
+
 	    console.log('getUrl==' + url);
 	    return url;
 	};
@@ -2395,7 +2401,7 @@
 	var yoka = __webpack_require__(127);
 	module.exports = {
 	    data: function () {return {
-	        src: yoka.getUrl('/html/slideout.html')
+	        src: yoka.getUrl('html/slideout.html')
 	    }},
 	    methods: {
 	        goback: function goback() {

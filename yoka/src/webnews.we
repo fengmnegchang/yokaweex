@@ -45,7 +45,7 @@
     var yoka = require('./yoka');
     module.exports = {
         data: {
-                 src:yoka.getUrl('/html/slideout.html'),
+                 src:yoka.getUrl('html/slideout.html'),
             },
         methods: {
             goback: function() {
