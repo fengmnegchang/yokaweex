@@ -45,11 +45,11 @@
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(183)
-	var __weex_style__ = __webpack_require__(184)
-	var __weex_script__ = __webpack_require__(185)
+	var __weex_template__ = __webpack_require__(186)
+	var __weex_style__ = __webpack_require__(187)
+	var __weex_script__ = __webpack_require__(188)
 
-	__weex_define__('@weex-component/c31f1e42e29d7407193aa2571d1409a2', [], function(__weex_require__, __weex_exports__, __weex_module__) {
+	__weex_define__('@weex-component/0f10305256ba0ee8d56f7ade7614dfe4', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
 	    __weex_script__(__weex_module__, __weex_exports__, __weex_require__)
 	    if (__weex_exports__.__esModule && __weex_exports__.default) {
@@ -62,11 +62,11 @@
 
 	})
 
-	__weex_bootstrap__('@weex-component/c31f1e42e29d7407193aa2571d1409a2',undefined,undefined)
+	__weex_bootstrap__('@weex-component/0f10305256ba0ee8d56f7ade7614dfe4',undefined,undefined)
 
 /***/ },
 
-/***/ 183:
+/***/ 186:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -100,7 +100,7 @@
 
 /***/ },
 
-/***/ 184:
+/***/ 187:
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -124,7 +124,7 @@
 
 /***/ },
 
-/***/ 185:
+/***/ 188:
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';

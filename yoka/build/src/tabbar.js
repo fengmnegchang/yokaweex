@@ -44,10 +44,10 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(181)
-	var __weex_script__ = __webpack_require__(182)
+	var __weex_template__ = __webpack_require__(184)
+	var __weex_script__ = __webpack_require__(185)
 
-	__weex_define__('@weex-component/7428971d76e6f681eb3796dd9734fb76', [], function(__weex_require__, __weex_exports__, __weex_module__) {
+	__weex_define__('@weex-component/0d1beb26803cad40ac7266bf4d5baca6', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
 	    __weex_script__(__weex_module__, __weex_exports__, __weex_require__)
 	    if (__weex_exports__.__esModule && __weex_exports__.default) {
@@ -58,7 +58,7 @@
 
 	})
 
-	__weex_bootstrap__('@weex-component/7428971d76e6f681eb3796dd9734fb76',undefined,undefined)
+	__weex_bootstrap__('@weex-component/0d1beb26803cad40ac7266bf4d5baca6',undefined,undefined)
 
 /***/ },
 /* 1 */,
@@ -2255,7 +2255,10 @@
 /* 178 */,
 /* 179 */,
 /* 180 */,
-/* 181 */
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2274,7 +2277,7 @@
 	}
 
 /***/ },
-/* 182 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';

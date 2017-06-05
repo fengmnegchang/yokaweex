@@ -48,7 +48,7 @@
 	var __weex_style__ = __webpack_require__(169)
 	var __weex_script__ = __webpack_require__(170)
 
-	__weex_define__('@weex-component/3a25850088f5333f585a9b3f6424c3dd', [], function(__weex_require__, __weex_exports__, __weex_module__) {
+	__weex_define__('@weex-component/9ce8c5696a901e1e935421bcb1cbb4e5', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
 	    __weex_script__(__weex_module__, __weex_exports__, __weex_require__)
 	    if (__weex_exports__.__esModule && __weex_exports__.default) {
@@ -61,7 +61,7 @@
 
 	})
 
-	__weex_bootstrap__('@weex-component/3a25850088f5333f585a9b3f6424c3dd',undefined,undefined)
+	__weex_bootstrap__('@weex-component/9ce8c5696a901e1e935421bcb1cbb4e5',undefined,undefined)
 
 /***/ },
 /* 1 */,
@@ -2344,6 +2344,7 @@
 	        this.rows.push('menu/menutab');
 	        this.rows.push('fashion/bodytag');
 	        this.rows.push('fashion/footgrid');
+	        this.rows.push('slideoutmenu');
 	        this.rows.push('webnews');
 	        this.rows.push('tabbar');
 	        this.rows.push('scroller-demo');

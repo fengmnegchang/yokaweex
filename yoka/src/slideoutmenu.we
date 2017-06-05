@@ -1,0 +1,106 @@
+<template>
+   <div class="wrapper">
+    <div id="menu" class="menu menu-{{showmenu}}" style="height: {{deviceHeight}}" onclick="close">
+        <div class="menu-header ">
+            <text class="menu-header-title" >主题</text>
+        </div>
+    </div>
+    <div id="main" class="panel panel-{{showmenu}}" style="height: {{deviceHeight}}" onclick="toggle">
+        <div class="btn-hamburger" >
+            <image style="width: 50;height: 50" src="{{srcmenu}}"></image>
+            <text class="tooltip">点击打开</text>
+        </div>
+    </div>
+   </div>
+
+</template>
+
+<script>
+    var yoka = require('./yoka');
+    module.exports = {
+        data: {
+            srcmenu: yoka.getUrl('/html/images/menu.png'),
+            showmenu:0,
+            deviceHeight:0,
+            platform:''
+
+        },
+        created () {
+            var self = this;
+            self.platform = self.$getConfig().env.platform;
+            self.deviceHeight = self.$getConfig().env.deviceHeight;
+        },
+
+        ready(){
+            var self = this;
+
+        },
+        methods: {
+            toggle: function (e) {
+                this.showmenu = 1;
+            },
+            close: function (e) {
+                this.showmenu = 0;
+            },
+
+        }
+    }
+</script>
+
+<style>
+    .wrapper{
+      flex-direction: row;
+    }
+
+    .panel {
+        width: 750;
+        background-color: #00BDFF;
+    }
+
+    .panel-0 {
+        left:0
+    }
+
+    .panel-1 {
+        left:500
+    }
+
+    .menu {
+        background-color: #1D1F20;
+        background-image: linear-gradient(145deg, #1D1F20, #404348);
+        right: -750;
+        position: absolute;
+        width: 750;
+
+    }
+    .menu-0{
+        right: -750;
+    }
+
+    .menu-1{
+        right: 0;
+    }
+
+    .btn-hamburger {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        flex-direction: row;
+    }
+
+    .tooltip {
+        font-size: 30;
+        color: #000;
+    }
+
+    .menu-header {
+        padding: 20px 0 20px 60px;
+    }
+
+    .menu-header-title {
+
+    }
+
+
+</style>

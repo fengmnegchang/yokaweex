@@ -44,11 +44,11 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(186)
-	var __weex_style__ = __webpack_require__(187)
-	var __weex_script__ = __webpack_require__(188)
+	var __weex_template__ = __webpack_require__(189)
+	var __weex_style__ = __webpack_require__(190)
+	var __weex_script__ = __webpack_require__(191)
 
-	__weex_define__('@weex-component/6dfe137d3678af76b56975875f5211f6', [], function(__weex_require__, __weex_exports__, __weex_module__) {
+	__weex_define__('@weex-component/fd824808f3a4aac9e24bf8d23f963df2', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
 	    __weex_script__(__weex_module__, __weex_exports__, __weex_require__)
 	    if (__weex_exports__.__esModule && __weex_exports__.default) {
@@ -61,7 +61,7 @@
 
 	})
 
-	__weex_bootstrap__('@weex-component/6dfe137d3678af76b56975875f5211f6',undefined,undefined)
+	__weex_bootstrap__('@weex-component/fd824808f3a4aac9e24bf8d23f963df2',undefined,undefined)
 
 /***/ },
 /* 1 */,
@@ -2263,7 +2263,10 @@
 /* 183 */,
 /* 184 */,
 /* 185 */,
-/* 186 */
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2351,7 +2354,7 @@
 	}
 
 /***/ },
-/* 187 */
+/* 190 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2383,7 +2386,7 @@
 	}
 
 /***/ },
-/* 188 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -2392,7 +2395,7 @@
 	var yoka = __webpack_require__(127);
 	module.exports = {
 	    data: function () {return {
-	        src: yoka.getUrl('html/slideout.html')
+	        src: yoka.getUrl('/html/slideout.html')
 	    }},
 	    methods: {
 	        goback: function goback() {

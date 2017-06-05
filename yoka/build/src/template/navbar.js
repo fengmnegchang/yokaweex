@@ -48,7 +48,7 @@
 	var __weex_style__ = __webpack_require__(9)
 	var __weex_script__ = __webpack_require__(10)
 
-	__weex_define__('@weex-component/e2de532a3931a5b302de2f640ed89969', [], function(__weex_require__, __weex_exports__, __weex_module__) {
+	__weex_define__('@weex-component/df1b6a5b47af741919e7a367abff6d46', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
 	    __weex_script__(__weex_module__, __weex_exports__, __weex_require__)
 	    if (__weex_exports__.__esModule && __weex_exports__.default) {
@@ -61,7 +61,7 @@
 
 	})
 
-	__weex_bootstrap__('@weex-component/e2de532a3931a5b302de2f640ed89969',undefined,undefined)
+	__weex_bootstrap__('@weex-component/df1b6a5b47af741919e7a367abff6d46',undefined,undefined)
 
 /***/ },
 /* 1 */,
